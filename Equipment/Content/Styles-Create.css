@@ -1,0 +1,15 @@
+﻿body {
+}
+.jumbotron{
+    margin-top: 50px;
+    background-color: rgb(222, 222, 222)
+}
+.input-group{
+    margin-bottom:5px
+}
+.input-group { 
+    font-size: 14px !important; 
+}
+button{
+    font-size: 14px !important;
+}

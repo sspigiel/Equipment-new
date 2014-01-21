@@ -1,0 +1,90 @@
+﻿@Scripts.Render("~/Scripts/bootstrap-datepicker.js")
+@Scripts.Render("~/Scripts/bootstrap-datepicker.pl.js")
+@Styles.Render("~/Content/datepicker.css")
+@Styles.Render("~/Content/datepicker3.css")
+@Scripts.Render("~/Scripts/knockout.js")
+@Scripts.Render("~/Scripts/CreateManyScript.js")
+@Scripts.Render("~/Scripts/CreateDatepicker.js")
+@Styles.Render("~/Content/Styles-Create.css")
+<script>
+  
+</script>
+
+@{
+    ViewBag.Title = "CreateMany";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Html.Hidden("UserName", @HttpContext.Current.User.Identity.Name)
+<div class="jumbotron">
+    <form data-bind="submit:save">
+        <div class="input-group">
+            <span class="input-group-addon">DeviceDictionaryId</span>
+            @Html.DropDownList("DeviceDictionaryId")
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">User</span>
+                        <input type="text" class="form-control" data-bind="value:DeviceUser" required name="User" id="User" />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="input-group">
+                        <button class="btn btn-default" type="button" id="UserClick" data-bind="click: click">Add me as a user</button>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">How many rows do you need?</span>
+                @Html.TextBox("number", "1", new { @class = "form-control", data_bind = "value:number", valueUpdate = "afterkeydown" })
+            </div>
+        </div>
+        <p>You have asked for <span data-bind='text: data().length'>&nbsp;</span> gift(s)</p>
+
+        <div data-bind='visible: data().length > 0'>
+            <div data-bind="foreach: data">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Serial Number</span>
+                            <input type="text" class="form-control" data-bind="value:DeviceSerialNumber" required />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="input-group">
+                            <span class="input-group-addon">Batch</span>
+                            <input type="text" class="form-control" data-bind="value:Batch" required />
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <label class="sr-only" for="dateFrom">Data od</label>
+                            <div class="input-group">
+                                <input id="dateFrom" type="text" class="form-control datepicker" placeholder="Od" data-bind="value:StartDate" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <label class="sr-only" for="dateTo">Data do</label>
+                            <div class="input-group">
+                                <input id="dateTo" type="text" class="form-control datepicker" placeholder="Do" data-bind="value:EndDate" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1">
+                        <div class="input-group">
+                            <button class="btn btn-default" data-bind='click: $root.removeGift'>Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button data-bind='enable: data().length > 0' type='submit' class="btn btn-default">Submit</button>
+    </form>
+</div>
