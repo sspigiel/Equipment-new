@@ -19,10 +19,31 @@ namespace Equipment
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
+            bundles.Add(new ScriptBundle("~/bundles/CreateManyPack").Include(
+                       "~/Scripts/bootstrap-datepicker.js",
+                       "~/Scripts/bootstrap-datepicker.pl.js",
+                       "~/Scripts/knockout.js",
+                       "~/Scripts/Site/DeviceCreateMany.js"
+                ));
+            bundles.Add(new ScriptBundle("~/bundles/EditPack").Include(
+                       "~/Scripts/bootstrap-datepicker.js",
+                       "~/Scripts/bootstrap-datepicker.pl.js",
+                       "~/Scripts/Site/DeviceEdit.js"
+                ));
+            bundles.Add(new ScriptBundle("~/bundles/CreatePack").Include(
+                        "~/Scripts/Site/DeviceCreate.js",
+                        "~/Scripts/bootstrap-datepicker.js",
+                       "~/Scripts/bootstrap-datepicker.pl.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/bundles/CreateManyStyles").Include(
+                        "~/Content/Styles-Create.css",
+                        "~/Content/datepicker3.css"
+                ));
+
         }
     }
 }

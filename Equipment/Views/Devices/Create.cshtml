@@ -1,76 +1,94 @@
 ﻿@model Equipment.Models.Device
+@using System.Web.Optimization
 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Scripts.Render("~/Scripts/CreateDevice.js")
-@Scripts.Render("~/Scripts/jquery-ui.js")
-@Styles.Render("~/Content/jquery-ui.css")
-<h2>Create</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.Hidden("UserName", @HttpContext.Current.User.Identity.Name)
-    <div class="form-horizontal">
-        <h4>@Html.ActionLink("Click Here to add many devices", "CreateMany", "Devices")</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeviceSerialNumber, new { @class = "col-sm-2 control-label" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DeviceSerialNumber, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DeviceSerialNumber)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeviceUser, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DeviceUser, new { @id = "DeviceUser" })
-                @Html.ValidationMessageFor(model => model.DeviceUser)
-                <button type="button" class="btn btn-default" id="UserClick">Click here to add me as a user</button>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeviceDictionaryId, "DeviceDictionaryId", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DeviceDictionaryId", String.Empty)
-                @Html.ValidationMessageFor(model => model.DeviceDictionaryId)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Batch, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Batch)
-                @Html.ValidationMessageFor(model => model.Batch)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.Label("Data początkowa")
-            @Html.TextBoxFor(model => model.Start, new { @id = "StartDatePicker" })
-
-        </div>
-        <div class="form-group">
-            @Html.Label("Data początkowa")
-            @Html.TextBoxFor(model => model.End, new { @id = "EndDatePicker" })
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+@section Styles{
+    @Styles.Render("~/Content/datepicker3.css")
+}
+@section Scripts{
+    @Scripts.Render("~/bundles/CreatePack")
 }
 
+<style>
+    .input-group {
+        font-size: 14px !important;
+    }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    button {
+        font-size: 14px !important;
+    }
+    .input-group-addon{
+        min-width:160px;
+    }
+    .input-group{
+        margin-top:5px;
+    }
+</style>
+
+<h2>Create</h2>
+<div class="row jumbotron">
+   
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("UserName", @HttpContext.Current.User.Identity.Name)
+
+            <h4>@Html.ActionLink("Click Here to add many devices", "CreateMany", "Devices")</h4>
+            <hr />
+            <div class="col-lg-8">
+                @Html.ValidationSummary(true)
+
+                <div class="input-group">
+                    @Html.LabelFor(model => model.DeviceSerialNumber, new { @class = " input-group-addon" })
+                    @Html.TextBoxFor(model => model.DeviceSerialNumber, new { @class = "form-control" })<br />
+                    @Html.ValidationMessageFor(model => model.DeviceSerialNumber)
+                </div>
+                <div class="input-group">
+                    @Html.LabelFor(model => model.DeviceUser, new { @class = "input-group-addon" })
+                    @Html.TextBoxFor(model => model.DeviceUser, new { @class = "form-control" })
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" id="UserClick">Click here to add me as a user</button>
+                    </span>
+                </div>
+
+                <div class="input-group">
+                    @Html.LabelFor(model => model.DeviceDictionaryId, "DeviceDictionaryId", new { @class = "input-group-addon" })
+                    @Html.DropDownList("DeviceDictionaryId", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model=>model.DeviceDictionaryId)
+                </div>
+
+                <div class="input-group">
+                    @Html.LabelFor(model => model.Batch, new { @class = "input-group-addon" })
+                    @Html.TextBoxFor(model => model.Batch, new { @class = "form-control" })<br />
+                    @Html.ValidationMessageFor(model=>model.Batch)
+
+                </div>
+                <div class="input-group">
+                    @Html.Label("Data początkowa", new { @class = "input-group-addon" })
+                    @Html.TextBoxFor(model => model.Start, new { @id = "StartDatePicker", @class = "datepicker form-control" })
+
+                </div>
+                <div class="input-group">
+                    @Html.Label("Data początkowa", new { @class = "input-group-addon" })
+                    @Html.TextBoxFor(model => model.End, new { @id = "EndDatePicker", @class = "datepicker form-control" })
+                </div>
+
+
+                <div class="input-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+
+        }
+  
 </div>
+
+
+
 

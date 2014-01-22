@@ -1,12 +1,15 @@
 ﻿@model Equipment.Models.Device
-
+@using System.Web.Optimization
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Scripts.Render("~/Scripts/EditScript.js")
-@Scripts.Render("~/Scripts/jquery-ui.js")
-@Styles.Render("~/Content/jquery-ui.css")
+@section Scripts{
+    @Scripts.Render("~/bundles/EditPack")
+}
+@section Styles{
+    @Styles.Render("~/Content/datepicker3.css")
+}
 <h2>Edit</h2>
 
 @using (Html.BeginForm())
@@ -19,55 +22,43 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.DeviceId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeviceSerialNumber, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DeviceSerialNumber)
+        <div class="input-group">
+            @Html.LabelFor(model => model.DeviceSerialNumber, new { @class = "input-group-addon" })
+                @Html.TextBoxFor(model => model.DeviceSerialNumber, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DeviceSerialNumber)
-            </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeviceUser, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DeviceUser)
+        <div class="input-group">
+            @Html.LabelFor(model => model.DeviceUser, new { @class = "input-group-addon" })
+                @Html.TextBoxFor(model => model.DeviceUser, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DeviceUser)
                 <button type="button" class="btn btn-default" id="UserClick">Click here to add me as a user</button>
-            </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DeviceDictionaryId, "DeviceDictionaryId", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DeviceDictionaryId", String.Empty)
+        <div class="input-group">
+            @Html.LabelFor(model => model.DeviceDictionaryId, "DeviceDictionaryId", new { @class = "input-group-addon" })
+                @Html.DropDownList("DeviceDictionaryId", null, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DeviceDictionaryId)
-            </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Batch, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Batch)
+        <div class="input-group">
+            @Html.LabelFor(model => model.Batch, new { @class = "input-group-addon" })
+                @Html.TextBoxFor(model => model.Batch, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Batch)
-            </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Start, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Start)
+        <div class="input-group">
+            @Html.LabelFor(model => model.Start, new { @class = "input-group-addon" })
+                @Html.TextBoxFor(model => model.Start, new { @class = "form-control datepicker" })
                 @Html.ValidationMessageFor(model => model.Start)
-            </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.End, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.End)
+        <div class="input-group">
+            @Html.LabelFor(model => model.End, new { @class = "input-group-addon" })
+                @Html.TextBoxFor(model => model.End, new { @class = "form-control datepicker" })
                 @Html.ValidationMessageFor(model => model.End)
-            </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+        <div class="input-group">
+            <div class="col-md-offset-2">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>

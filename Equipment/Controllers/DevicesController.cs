@@ -12,7 +12,6 @@ namespace Equipment.Controllers
     public class DevicesController : Controller
     {
         private MyDbContext db = new MyDbContext();
-
         // GET: /Devices/
         public ActionResult Index()
         {
@@ -50,7 +49,7 @@ namespace Equipment.Controllers
         }
         [HttpPost]
         //public ActionResult Read(object[] data, string DeviceUser, string DeviceId, string number)
-        public ActionResult Read(ViewModel m)
+        public ActionResult WriteToDatabase(ViewModel m)
         {
             var device = new Device();
             for (int i = 0; i < m.data.Count;i++ )
@@ -91,6 +90,7 @@ namespace Equipment.Controllers
         // GET: /Devices/Create
         public ActionResult Create()
         {
+
             var Ids = db.Dictionaries
                .Select(s => new
                {
@@ -214,11 +214,6 @@ namespace Equipment.Controllers
             ViewBag.DeviceDictionaryId = new SelectList(Ids, "DeviceDictionaryId", "Description");
 
             return View();
-        }
-        [HttpPost]
-        public ActionResult CreateMany(int i)
-        {
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

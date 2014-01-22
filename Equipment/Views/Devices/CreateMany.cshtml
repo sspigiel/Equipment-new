@@ -1,34 +1,25 @@
-﻿@Scripts.Render("~/Scripts/bootstrap-datepicker.js")
-@Scripts.Render("~/Scripts/bootstrap-datepicker.pl.js")
-@Styles.Render("~/Content/datepicker.css")
-@Styles.Render("~/Content/datepicker3.css")
-@Scripts.Render("~/Scripts/knockout.js")
-@Scripts.Render("~/Scripts/CreateManyScript.js")
-@Scripts.Render("~/Scripts/CreateDatepicker.js")
-@Styles.Render("~/Content/Styles-Create.css")
-<script>
-  
-</script>
+﻿@Scripts.Render("~/bundles/CreateManyPack")
+@Styles.Render("~/bundles/CreateManyStyles")
 
 @{
     ViewBag.Title = "CreateMany";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 @Html.Hidden("UserName", @HttpContext.Current.User.Identity.Name)
 <div class="jumbotron">
     <form data-bind="submit:save">
+        
         <div class="input-group">
             <span class="input-group-addon">DeviceDictionaryId</span>
-            @Html.DropDownList("DeviceDictionaryId")
+            @Html.DropDownList("DeviceDictionaryId", null, new { @class = "form-control", data_bind = "value:DeviceId", required="true" })
         </div>
         <div>
             <div class="row">
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon">User</span>
-                        <input type="text" class="form-control" data-bind="value:DeviceUser" required name="User" id="User" />
+                        <input type="text" class="form-control" data-bind="value:DeviceUser" name="User" id="User" />
                     </div>
                 </div>
                 <div class="col-lg-2">
